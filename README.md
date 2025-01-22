@@ -1,8 +1,8 @@
 <h2 align="center">🧹CleanDIFT: Diffusion Features without Noise</h2>
 <div align="center"> 
-  <a href="" target="_blank">Felix Krause</a><sup>*</sup> · 
-  <a href="" target="_blank">Timy Phan</a><sup>*</sup> · 
-  <a href="" target="_blank">Vincent Tao Hu</a><sup>*</sup> · 
+  <a href="" target="_blank">Felix Krause</a> · 
+  <a href="" target="_blank">Timy Phan</a> · 
+  <a href="" target="_blank">Vincent Tao Hu</a> · 
   <a href="https://ommer-lab.com/people/ommer/" target="_blank">Björn Ommer</a>
 </div>
 <p align="center"> 
@@ -10,11 +10,9 @@
   <sup>*</sup> Equal Contribution
 </p>
 
-[![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://compvis.github.io/cleandift/)
-[![Paper](https://img.shields.io/badge/arXiv-PDF-b31b1b)](https://arxiv.org/pdf/2412.03439)
-[![Weights](https://img.shields.io/badge/HuggingFace-Weights-orange)](https://huggingface.co/CompVis/cleandift)
+[![Paper](https://img.shields.io/badge/arXiv-PDF-b31b1b)](https://arxiv.org/pdf/2501.04765)
 
-This repository contains the official implementation of the paper "CleanDIFT: Diffusion Features without Noise".
+This repository contains the official implementation of the paper "TREAD: Token Routing for Efficient Architecture-agnostic Diffusion Training".
 
 We propose CleanDIFT, a novel method to extract noise-free, timestep-independent features by enabling diffusion models to work directly with clean input images. Our approach is efficient, training on a single GPU in just 30 minutes.
 
