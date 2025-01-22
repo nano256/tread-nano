@@ -4,9 +4,7 @@ from typing import Dict, Union, Any, Optional
 
 import numpy as np
 import torch
-from collections import OrderedDict
 import re
-import torch.nn.functional as F
 import deepspeed
 from deepspeed.runtime.zero.partition_parameters import ZeroParamStatus
 from transformers import get_scheduler as _get_scheduler

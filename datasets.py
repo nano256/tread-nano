@@ -42,13 +42,10 @@ def center_crop_arr(pil_image, image_size):
 ###############################################################################
 
 def lmdb_loader(path, lmdb_data, resolution):
-    # In-memory binary streams
     with lmdb_data.begin(write=False, buffers=True) as txn:
         bytedata = txn.get(path.encode('ascii'))
     img = Image.open(io.BytesIO(bytedata)).convert('RGB')
     arr = center_crop_arr(img, resolution)
-    # arr = arr.astype(np.float32) / 127.5 - 1
-    # arr = np.transpose(arr, [2, 0, 1])  # CHW
     return arr
 
 

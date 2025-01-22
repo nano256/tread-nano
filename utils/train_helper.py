@@ -7,10 +7,6 @@ from collections import OrderedDict
 import torch
 from torch import distributed as dist
 
-#----------------------------------------------------------------------------
-# Functions originally from File 1
-#----------------------------------------------------------------------------
-
 def requires_grad(model, flag=True):
     """
     Set requires_grad flag for all parameters in a model.
@@ -108,10 +104,6 @@ def rzprint(*args, **kwargs):
     """
     if not dist.is_available() or not dist.is_initialized() or dist.get_rank() == 0:
         print(*args, **kwargs)
-
-#----------------------------------------------------------------------------
-# Functions and classes from File 2 that are not in File 1
-#----------------------------------------------------------------------------
 
 # Get the latest checkpoint from the save directory.
 def get_latest_ckpt(dir):

@@ -497,14 +497,6 @@ def main():
         img = img[None, ...]
         img = img.to(device)
 
-        # with torch.cuda.amp.autocast():
-        #     moments = model.encode_moments(img)
-        #     mean, logvar = torch.chunk(moments, 2, dim=1)
-        #     logvar = torch.clamp(logvar, -30.0, 20.0)
-        #     std = torch.exp(0.5 * logvar)
-        #     zs = [(mean + std * torch.randn_like(mean)) * scale_factor for _ in range(4)]
-        #     recons = [model.decode(z) for z in zs]
-
         with torch.cuda.amp.autocast():
             print('test encode & decode')
             recons = [model.decode(model.encode(img)) for _ in range(4)]
