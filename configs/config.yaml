@@ -9,9 +9,9 @@ dataset:
   num_classes: 1000
   resolution: 32
   num_channels: 4
-  train_path: /export/scratch/ra63vex/MaskDiT/latent_imagenet_wds
+  train_path: path_to_train_data_sharded_and_precomputed
   val_path: null
-  ref_path: /export/scratch/ra63vex/MaskDiT/assets/fid_stats/VIRTUAL_imagenet256_labeled.npz
+  ref_path: path_to_reference_batch_npz
 
 train:
   general:
@@ -53,13 +53,13 @@ train:
     discretization: null
     schedule: null
     scaling: null
-    pretrained_path: /export/scratch/ra63vex/MaskDiT/assets/autoencoder_kl.pth
-    inception_path: /export/scratch/ra63vex/MaskDiT/assets/inception-2015-12-05.pkl
+    pretrained_path: path_to_autoencoder_ckpt
+    inception_path: path_to_inception_network
 
 wandb:
   project: test
 
-results_dir: /export/scratch/ra63vex/dev/paper_codebases/tread/results
+results_dir: path_to_results_folder
 run_name: tread_2
 
 hydra:  
