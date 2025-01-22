@@ -31,7 +31,7 @@ accelerate launch train.py
 
 with `configs/config.yaml` having all the relevant information and settings for the actual training run. Please adjust this as needed before training.
 `Note:` We expect precomputed latents in this version.
-Under `model` one can decide between `dit and `tread` which are the preconfigured versions here with the former being the standard dit and the latter being supported by TREAD. How these changes are implemented can be seen in `dit.py` and `routing_module.py`.
+Under `model` one can decide between `dit` and `tread` which are the preconfigured versions here with the former being the standard dit and the latter being supported by TREAD. How these changes are implemented can be seen in `dit.py` and `routing_module.py`.
 
 In our paper, we show that TREAD can also work on other architectures. In practice, one needs to be more careful with the routing process in order to adhere to the characteristics of the architecture as some have a spatial bias (RWKV, Mamba, etc.) which needs to be respected. For simplicity, we only provide code for the Transformer architecture as it is the most widely used while being robust and easy to work with.
 
