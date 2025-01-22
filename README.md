@@ -39,6 +39,22 @@ In our paper we show that TREAD can also work on other architectures. In practic
 
 For sampling we use the [EDM](https://github.com/NVlabs/edm) sampling and the FID calculation is done via the [ADM](https://github.com/openai/guided-diffusion) evaluation suite . We provide a `fid.py` to evaluate our models during training with the same reference batches as ADM.
 
+## 🎓 Citation
+
+If you use this codebase or otherwise found our work valuable, please cite our paper:
+
+```bibtex
+@misc{krause2025treadtokenroutingefficient,
+      title={TREAD: Token Routing for Efficient Architecture-agnostic Diffusion Training}, 
+      author={Felix Krause and Timy Phan and Vincent Tao Hu and Björn Ommer},
+      year={2025},
+      eprint={2501.04765},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2501.04765}, 
+}
+```
+
 ## Acknowledgements
 
 Thanks to the open source codebases such as [DiT](https://github.com/facebookresearch/DiT), [MaskDiT](https://github.com/Anima-Lab/MaskDiT), [ADM](https://github.com/openai/guided-diffusion), and [EDM](https://github.com/NVlabs/edm). Our codebase is built on them.
