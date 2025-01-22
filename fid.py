@@ -30,24 +30,18 @@ def calculate_inception_stats(
     num_gpus = torch.cuda.device_count()
     use_distributed = num_gpus > 1
     if use_distributed:
-        # Rank 0 goes first.
         if dist.get_rank() != 0:
             dist.barrier()
 
-    # Define the path to your local file
     detector_path = inception_path
 
-    # Load the model from the local file
     print('Loading Inception-v3 model from disk...')
     with open(detector_path, 'rb') as f:
         detector_net = pickle.load(f).to(device)
 
-    # Set any additional detector_kwargs if necessary
     detector_kwargs = dict(return_features=True)
     feature_dim = 2048
 
-    # List images.
-    # mprint(f'Loading images from "{image_path}"...')
     dataset_obj = ImageFolderDataset(path=image_path, max_size=num_expected, random_seed=seed)
     if num_expected is not None and len(dataset_obj) < num_expected:
         raise click.ClickException(f'Found {len(dataset_obj)} images, but expected at least {num_expected}')
@@ -55,11 +49,9 @@ def calculate_inception_stats(
         raise click.ClickException(f'Found {len(dataset_obj)} images, but need at least 2 to compute statistics')
 
     if use_distributed:
-        # Other ranks follow.
         if dist.get_rank() == 0:
             dist.barrier()
 
-    # Divide images into batches.
     if use_distributed:
         num_batches = ((len(dataset_obj) - 1) // (max_batch_size * dist.get_world_size()) + 1) * dist.get_world_size()
     else:
@@ -71,8 +63,6 @@ def calculate_inception_stats(
         rank_batches = all_batches
     data_loader = DataLoader(dataset_obj, batch_sampler=rank_batches, num_workers=num_workers, prefetch_factor=prefetch_factor)
 
-    # Accumulate statistics.
-    # mprint(f'Calculating statistics for {len(dataset_obj)} images...')
     mu = torch.zeros([feature_dim], dtype=torch.float64, device=device)
     sigma = torch.zeros([feature_dim, feature_dim], dtype=torch.float64, device=device)
     if use_distributed:
@@ -97,7 +87,6 @@ def calculate_inception_stats(
             sigma += features.T @ features
 
     if use_distributed:
-        # Calculate grand totals.
         dist.all_reduce(mu)
         dist.all_reduce(sigma)
     mu /= len(dataset_obj)
@@ -105,7 +94,6 @@ def calculate_inception_stats(
     sigma /= len(dataset_obj) - 1
     return mu.cpu().numpy(), sigma.cpu().numpy()
 
-#----------------------------------------------------------------------------
 
 def calculate_fid_from_inception_stats(mu, sigma, mu_ref, sigma_ref):
     m = np.square(mu - mu_ref).sum()
@@ -113,7 +101,6 @@ def calculate_fid_from_inception_stats(mu, sigma, mu_ref, sigma_ref):
     fid = m + np.trace(sigma + sigma_ref - s * 2)
     return float(np.real(fid))
 
-#----------------------------------------------------------------------------
 
 
 def calc(image_path, ref_path, num_expected, seed, batch, inception_path):
@@ -145,15 +132,12 @@ def calc(image_path, ref_path, num_expected, seed, batch, inception_path):
         return fid
 
 
-#----------------------------------------------------------------------------
-
 
 def ref(dataset_path, dest_path, batch):
     """Calculate dataset reference statistics needed by 'calc'."""
     num_gpus = torch.cuda.device_count()
     use_distributed = num_gpus > 1
     mu, sigma = calculate_inception_stats(image_path=dataset_path, max_batch_size=batch)
-    # mprint(f'Saving dataset reference statistics to "{dest_path}"...')
     if use_distributed:
         if dist.get_rank() == 0:
             if os.path.dirname(dest_path):
@@ -165,7 +149,6 @@ def ref(dataset_path, dest_path, batch):
         np.savez(dest_path, mu=mu, sigma=sigma)
     if use_distributed:
         dist.barrier()
-    # mprint('Done.')
 
 
 if __name__ == '__main__':
