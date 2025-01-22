@@ -33,6 +33,8 @@ with `configs.config.yaml` haveing all relevant information and settings for the
 `Note:` We expect precomputed latents in this version.
 Under `model` one can decide between `dit`and `tread` which are the preconfigured version here with the former being the standard dit and the latter being supported by TREAD. How these changes are implemented can be seen in `dit.py` and `routing_module.py`.
 
+In our paper we show that TREAD can also work on other architectures. In practice, one needs to be more careful with the routing process in order to adhere to the characteristics of the architecture as some have spatial bias (RWKV, Mamba, etc.) which need to be respected to gain performance. For simplicity we only provide code for the Transformer architecture as that is the most widely used while being robust and easy to work with.
+
 ### Sampling
 
 For sampling we use the [EDM](https://github.com/NVlabs/edm) sampling and the FID calculation is done via the [ADM](https://github.com/openai/guided-diffusion) evaluation suite . We provide a `fid.py` to evaluate our models during training with the same reference batches as ADM.
