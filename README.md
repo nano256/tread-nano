@@ -1,4 +1,4 @@
-<h2 align="center">🧹CleanDIFT: Diffusion Features without Noise</h2>
+<h2 align="center">TREAD: Token Routing for Efficient Architecture-agnostic Diffusion Training</h2>
 <div align="center"> 
   <a href="" target="_blank">Felix Krause</a> · 
   <a href="" target="_blank">Timy Phan</a> · 
