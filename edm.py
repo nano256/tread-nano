@@ -52,7 +52,7 @@ class EDMPrecond(nn.Module):
         return torch.as_tensor(sigma)
 
 class EDMDiffusion(nn.Module):
-    def __init__(self, P_mean=-1.2, P_std=1.2, sigma_data=0.5, sigma_min=0, sigma_max=float('inf'), loss_type='simple', sampler_fn=None):
+    def __init__(self, P_mean=-1.2, P_std=1.2, sigma_data=0.5, sigma_min=0, sigma_max=float('inf'), loss_type='simple'):
         super().__init__()
         self.P_mean = P_mean
         self.P_std = P_std

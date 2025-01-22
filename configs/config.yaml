@@ -31,7 +31,6 @@ train:
   diffuser:
     _target_: edm.EDMDiffusion
     loss_type: mae # or simple for standard edm loss
-    sampler_fn: sampling.edm_sampler
 
   logging:
     log_interval: 100
