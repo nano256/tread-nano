@@ -77,8 +77,10 @@ class EDMDiffusion(nn.Module):
     def get_training_loss(self, net, x, y=None, mask_ratio=0.0, mae_loss_coef=0.0, class_drop_prob=0.1):
         if self.loss_type == "simple":
             return self.get_training_loss_simple(net, x, y, mask_ratio, mae_loss_coef, class_drop_prob)
-        else:
+        elif self.loss_type == "tread":
             return self.get_training_loss_mae_masking(net, x, y, mask_ratio, mae_loss_coef, class_drop_prob)
+        else:
+            raise ValueError(f"Unknown loss type: {self.loss_type}")
     
     def get_training_loss_mae_masking(self, net, x, y=None, mask_ratio=0.0, mae_loss_coef=0.1, class_drop_prob=0.1):
         rnd_normal = torch.randn([x.shape[0], 1, 1, 1], device=x.device)

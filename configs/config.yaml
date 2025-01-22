@@ -16,7 +16,7 @@ dataset:
 train:
   general:
     class_drop_prob: 0.1
-    mask_ratio: 0.5 # this just needs to be > 0.0 for the mae loss to be used properly
+    mask_ratio: 0.5 # this just needs to be > 0.0 for the tread loss to be used properly
     batch_size: 256
     max_epochs: 100000
     gradient_clipping_norm: null
@@ -30,7 +30,7 @@ train:
 
   diffuser:
     _target_: edm.EDMDiffusion
-    loss_type: mae # or simple for standard edm loss
+    loss_type: tread # or 'simple' for standard edm loss
 
   logging:
     log_interval: 100
@@ -56,10 +56,10 @@ train:
     inception_path: path_to_inception_network
 
 wandb:
-  project: test
+  project: your_project_name
 
 results_dir: path_to_results_folder
-run_name: tread_2
+run_name: run_name
 
 hydra:  
   output_subdir: null  

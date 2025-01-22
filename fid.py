@@ -1,12 +1,7 @@
-# MIT License
-
-# Copyright (c) [2023] [Anima-Lab]
-
-# This code is adapted from https://github.com/NVlabs/edm/blob/main/fid.py. 
+# This code is adapted from https://github.com/NVlabs/edm/blob/main/fid.py and https://github.com/Anima-Lab/MaskDiT/blob/master/fid.py
 # The original code is licensed under a Creative Commons 
 # Attribution-NonCommercial-ShareAlike 4.0 International License, which is can be found at licenses/LICENSE_EDM.txt. 
 
-"""Script for calculating Frechet Inception Distance (FID)."""
 import argparse
 from multiprocessing import Process
 
@@ -20,10 +15,6 @@ import torch.distributed as dist
 from torch.utils.data import DataLoader
 import sys
 import os
-# current_dir = os.path.dirname(os.path.abspath(__file__))
-# top_level_dir = os.path.abspath(os.path.join(current_dir, "../../../"))  # Adjust as needed
-# if top_level_dir not in sys.path:
-#     sys.path.insert(0, top_level_dir)
     
 from utils.train_helper import *
 from datasets import ImageFolderDataset
