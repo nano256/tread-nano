@@ -131,8 +131,6 @@ def calc(image_path, ref_path, num_expected, seed, batch, inception_path):
         print(f'{fid:g}')
         return fid
 
-
-
 def ref(dataset_path, dest_path, batch):
     """Calculate dataset reference statistics needed by 'calc'."""
     num_gpus = torch.cuda.device_count()
