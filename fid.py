@@ -190,11 +190,11 @@ if __name__ == '__main__':
     # fid
     parser.add_argument('--mode', type=str, required=True, choices=['calc', 'ref'], help='Calcalute FID or store reference statistics')
     parser.add_argument('--image_path', type=str, required=True, help='Path to the images')
-    parser.add_argument('--ref_path', type=str, default='/export/scratch/ra63vex/MaskDiT/fid_imagenet256.npz', help='Dataset reference statistics')
+    parser.add_argument('--ref_path', type=str, default='path_to_reference_batch', help='Dataset reference statistics')
     parser.add_argument('--num_expected', type=int, default=50000, help='Number of images to use')
     parser.add_argument('--seed', type=int, default=0, help='Random seed for selecting the images')
     parser.add_argument('--batch', type=int, default=64, help='Maximum batch size per GPU')
-    parser.add_argument('--inception_path', type=str, default='/export/scratch/ra63vex/MaskDiT/assets/inception-2015-12-05.pkl', help='Path to the inception model')
+    parser.add_argument('--inception_path', type=str, default='path_to_network', help='Path to the inception model')
 
     args = parser.parse_args()
     args.global_size = args.num_proc_node * args.num_process_per_node

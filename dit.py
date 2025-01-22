@@ -1,14 +1,13 @@
-import sys
-import os
 import argparse
+import math
 from typing import Dict, Any
 
+import numpy as np
 import torch
 import torch.nn as nn
-import numpy as np
 from timm.models.vision_transformer import Mlp, Attention, PatchEmbed
+
 from routing_module import Router
-import math
 
 def modulate(x, shift, scale):
     return x * (1 + scale.unsqueeze(1)) + shift.unsqueeze(1)
