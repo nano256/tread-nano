@@ -23,7 +23,7 @@ We propose TREAD, a new method to increase the efficiency of diffusion training 
 
 ### Training
 
-In order to train a diffusion model, we offer a minimalistic training script in `train.py`. In its simplest form, it can be started using:
+In order to train a diffusion model, we offer a minimalistic training script in `train.py`. In its simplest form it can be started using:
 
 ```python
 accelerate launch train.py
