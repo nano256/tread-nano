@@ -28,6 +28,17 @@ from itertools import islice
 import webdataset as wds
 import pickle
 import os
+from hydra.core.config_store import ConfigStore
+from dataclasses import dataclass
+
+
+@dataclass
+class ResolutionConfig:
+    resolution: str = "64x64"  # Default resolution
+
+
+cs = ConfigStore.instance()
+cs.store(name="resolution_config", node=ResolutionConfig)
 
 
 # WebDataset Helper Function
@@ -100,7 +111,7 @@ def rzprint(*args, **kwargs):
     if not dist.is_available() or not dist.is_initialized() or dist.get_rank() == 0:
         print(*args, **kwargs)
 
-@hydra.main(config_path="configs", config_name="config")
+@hydra.main(config_path="configs", config_name="config-${resolution}")
 def train(cfg: DictConfig):
     
     print(OmegaConf.to_yaml(cfg))
@@ -108,6 +119,10 @@ def train(cfg: DictConfig):
     data_config = cfg.dataset
     model_config = cfg.model
     
+    # Print resolution information
+    resolution = cfg.dataset.resolution
+    rzprint(f"Training with resolution: {resolution}x{resolution}")
+
     experiment_dir = os.path.join(cfg.results_dir, cfg.run_name)
 
     ##############################################################

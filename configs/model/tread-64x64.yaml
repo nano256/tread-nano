@@ -4,7 +4,7 @@ model:
   params:
     num_classes: ${dataset.num_classes}
     in_channels: ${dataset.num_channels}
-    input_size: ${dataset.resolution}
+    input_size: 64
     cond_mode: adaln
     enable_routing: True
     routes:
@@ -12,4 +12,4 @@ model:
         start_layer_idx: 0
         end_layer_idx: 8
         x_T: True
-        x_D_last: True
+        x_D_last: True 

@@ -3,7 +3,7 @@ defaults:
 
 
 dataset:
-  name: imagenet256
+  name: imagenet32
   num_workers: 4
   total_num: 1281167
   num_classes: 1000
@@ -59,7 +59,7 @@ wandb:
   project: your_project_name
 
 results_dir: path_to_results_folder
-run_name: run_name
+run_name: run_name_32x32
 
 hydra:  
   output_subdir: null  
@@ -70,4 +70,4 @@ enable_eval: True
 global_seed: 42
 save_ckpt: False
 load_ckpt: False
-log_wandb: False
+log_wandb: False 

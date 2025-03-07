@@ -174,3 +174,8 @@ cython_debug/
 .pypirc
 
 *__pycache__*
+
+# ImageNet dataset
+data/
+data/downsampled-imagenet-64x64.zip
+data/imagenet-64x64/

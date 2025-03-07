@@ -4,6 +4,6 @@ model:
   params:
     num_classes: ${dataset.num_classes}
     in_channels: ${dataset.num_channels}
-    input_size: ${dataset.resolution}
+    input_size: 256
     cond_mode: adaln
-    enable_routing: False
+    enable_routing: False 

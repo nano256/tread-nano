@@ -16,3 +16,4 @@ timm>=0.9.0
 einops>=0.6.0
 matplotlib>=3.7.0
 click>=8.1.0
+kagglehub>=0.2.0

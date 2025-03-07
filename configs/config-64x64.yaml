@@ -1,0 +1,73 @@
+defaults:
+  - model: dit # or tread (both in dit.py)
+
+
+dataset:
+  name: imagenet64
+  num_workers: 4
+  total_num: 1281167
+  num_classes: 1000
+  resolution: 64
+  num_channels: 4
+  train_path: path_to_train_data_sharded_and_precomputed
+  val_path: null
+  ref_path: path_to_reference_batch_npz
+
+train:
+  general:
+    class_drop_prob: 0.1
+    mask_ratio: 0.5 # this just needs to be > 0.0 for the tread loss to be used properly
+    batch_size: 256
+    max_epochs: 100000
+    gradient_clipping_norm: null
+
+  optimizer:
+    _target_: torch.optim.AdamW
+    lr: 1e-4
+    betas: [0.9, 0.999]
+    eps: 1e-08
+    weight_decay: 0.0
+
+  diffuser:
+    _target_: edm.EDMDiffusion
+    loss_type: tread # or 'simple' for standard edm loss
+
+  logging:
+    log_interval: 100
+
+  eval:
+    cfg_scales: [null]
+    batchsize: 50
+    eval_interval: 100
+    fid_num_samples: 2_000
+    fid_batch_size: 64
+    seeds: '100000-149999'
+    subdirs: False
+    class_idx: null
+    max_batch_size: 100
+    cfg_scale: null
+    num_steps: 40
+    S_churn: 0
+    solver: null
+    discretization: null
+    schedule: null
+    scaling: null
+    pretrained_path: path_to_autoencoder_ckpt
+    inception_path: path_to_inception_network
+
+wandb:
+  project: your_project_name
+
+results_dir: path_to_results_folder
+run_name: run_name_64x64
+
+hydra:  
+  output_subdir: null  
+  run:  
+    dir: .
+
+enable_eval: True
+global_seed: 42
+save_ckpt: False
+load_ckpt: False
+log_wandb: False 
