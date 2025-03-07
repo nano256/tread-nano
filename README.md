@@ -1,23 +1,20 @@
-<h2 align="center">👟TREAD: Token Routing for Efficient Architecture-agnostic Diffusion Training</h2>
+<h2 align="center">Nano-TREAD: doing diffusion with 64x64</h2>
 <div align="center"> 
-  <a href="" target="_blank">Felix Krause</a> · 
-  <a href="" target="_blank">Timy Phan</a> · 
-  <a href="https://taohu.me" target="_blank">Vincent Tao Hu</a> · 
-  <a href="https://ommer-lab.com/people/ommer/" target="_blank">Björn Ommer</a>
+  <a href="https://github.com/nano256" target="_blank">nano256</a> · 
+  <a href="https://github.com/lantos1618" target="_blank">lantos1618</a>
 </div>
-<p align="center"> 
-  <b>CompVis Group @ LMU Munich</b> <br/>
-</p>
 
-[![Paper](https://img.shields.io/badge/arXiv-PDF-b31b1b)](https://arxiv.org/abs/2501.04765)
+## Based on TREAD
+https://github.com/CompVis/tread
 
-This repository contains the official implementation of the paper "TREAD: Token Routing for Efficient Architecture-agnostic Diffusion Training".
+## Main Files
 
-We propose TREAD, a new method to increase the efficiency of diffusion training by improving upon iteration speed and performance at the same time. For this, we use uni-directional token transportation to modulate the information flow in the network. 
-
-<div align="center">
-  <img src="./docs/images/teaser.png" alt="teaser" style="width:50%;">
-</div>
+- `dit.py`: Core implementation of the Diffusion Transformer models
+- `routing_module.py`: Implementation of the TREAD token routing mechanism
+- `edm.py`: Diffusion process and sampling methods
+- `train.py`: Main training loop and infrastructure
+- `fid.py`: Evaluation metrics calculation
+- `autoencoder.py`: VAE implementation for latent space encoding/decoding
 
 ## 🚀 Usage
 
